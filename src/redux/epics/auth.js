@@ -24,7 +24,26 @@ export const Login = (action$, store$) =>
             console.log('login epic:', login_email, login_password)
 
         }),
-        map(_ => loginSuccess({ data : ''}))
+        mergeMap(_ => {
+
+            let { login_email, login_password } = store$.value.form,
+                user = new AWSCognito.CognitoUser({ Pool : userPool, Username : login_email })
+
+            return from(new Promise(resolve =>
+                user.authenticateUser(
+                    new AWSCognito.AuthenticationDetails({
+                        Username: login_email,
+                        Password: login_password
+                    }),
+                    {
+                        onSuccess: data => resolve({ accessToken : data.getAccessToken().getJwtToken() }),
+                        onFailure: err => resolve({ })
+                    }
+                )
+            ))
+
+        }),
+        map(e => loginSuccess(e))
     );
 
 export const Regist = (action$, store$) => 

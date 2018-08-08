@@ -18,6 +18,8 @@ export default {
             });
         },
         [ActionTypes.AUTH_LOGIN_SUCCESS](state, { data }) {
+            console.log('signed in callback:', data)
+
             return immutable(state, {
                 pending: { 
                     $set : false
