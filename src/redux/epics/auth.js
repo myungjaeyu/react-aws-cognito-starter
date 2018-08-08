@@ -4,6 +4,16 @@ import { loginSuccess, registSuccess, registConfirmSuccess } from '../actions';
 import { ofType } from 'redux-observable';
 import { map, tap } from 'rxjs/operators';
 
+import * as AWSCognito from 'amazon-cognito-identity-js';
+
+
+const poolData = {
+    UserPoolId: '',
+    ClientId: ''
+};
+
+const userPool = new AWSCognito.CognitoUserPool(poolData);
+
 export const Login = (action$, store$) => 
     action$.pipe(
         ofType(ActionTypes.AUTH_LOGIN),
