@@ -21,7 +21,7 @@ export const regist = () => {
 
 export const registSuccess = (data) => {
     return {
-        type: ActionTypes.AUTH_REGIST,
+        type: ActionTypes.AUTH_REGIST_SUCCESS,
         data : data
     }
 };
