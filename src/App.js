@@ -12,14 +12,14 @@ const Login = ({ handleChange, handleSubmit }) => (
 
         <label>
             Email
-            <input type="text" name='email' onChange={ handleChange } />
+            <input type="text" name='login_email' onChange={ handleChange } />
         </label>
 
         <br />
 
         <label>
             Password
-            <input type="password" name='password' onChange={ handleChange } />
+            <input type="password" name='login_password' onChange={ handleChange } />
         </label>
 
         <br />
@@ -37,14 +37,14 @@ const Regist = ({ handleChange, handleSubmit }) => (
 
         <label>
             Email
-            <input type="text" name='email' onChange={ handleChange } />
+            <input type="text" name='regist_email' onChange={ handleChange } />
         </label>
 
         <br />
 
         <label>
             Password
-            <input type="password" name='password' onChange={ handleChange } />
+            <input type="password" name='regist_password' onChange={ handleChange } />
         </label>
 
         <br />
@@ -62,20 +62,19 @@ const RegistConfirm = ({ handleChange, handleSubmit }) => (
 
         <label>
             Confirm Email
-            <input type="text" name='email' onChange={ handleChange } />
+            <input type="text" name='regist_confirm_email' onChange={ handleChange } />
         </label>
 
         <br />
 
         <label>
             Confirm Code
-            <input type="text" name='code' onChange={ handleChange } />
+            <input type="text" name='regist_confirm_code' onChange={ handleChange } />
         </label>
 
         <br />
 
         <input type="submit" value="Submit" />
-
     </form>
 );
 
