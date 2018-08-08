@@ -6,5 +6,6 @@ export const ActionTypes = {
     AUTH_REGIST : '[auth] regist',
     AUTH_REGIST_SUCCESS : '[auth] registSuccess',
     AUTH_REGIST_CONFIRM : '[auth] registConfirm',
-    AUTH_REGIST_CONFIRM_SUCCESS : '[auth] registConfirmSuccess'
+    AUTH_REGIST_CONFIRM_SUCCESS : '[auth] registConfirmSuccess',
+    FORM_CHANGE_INPUT_VALUE : '[form] changeInputValue'
 }
