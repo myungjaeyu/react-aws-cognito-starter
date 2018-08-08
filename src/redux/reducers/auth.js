@@ -54,6 +54,8 @@ export default {
             });
         },
         [ActionTypes.AUTH_REGIST_CONFIRM_SUCCESS](state, { data }) {
+            console.log('confirmed callback:', data)
+
             return immutable(state, {
                 pending: { 
                     $set : false

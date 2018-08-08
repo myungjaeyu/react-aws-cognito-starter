@@ -64,7 +64,22 @@ export const RegistConfirm = (action$, store$) =>
             let { regist_confirm_email, regist_confirm_code } = store$.value.form;
 
             console.log('regist_confirm epic:', regist_confirm_email, regist_confirm_code)
+            
+        }),
+        mergeMap(_ => {
+
+            let { regist_confirm_email, regist_confirm_code } = store$.value.form,
+                user = new AWSCognito.CognitoUser({ Pool : userPool, Username : regist_confirm_email })
+
+            return from(new Promise(resolve =>
+                user.confirmRegistration(
+                    regist_confirm_code,
+                    true,
+                    (err, data) => 
+                        resolve(err ? {} : { state : data })
+                )
+            ))
 
         }),
-        map(_ => registConfirmSuccess({ data : ''}))
+        map(e => registConfirmSuccess(e))
     );
