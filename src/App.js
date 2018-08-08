@@ -3,6 +3,7 @@ import './App.css';
 
 import { connect } from 'react-redux';
 
+import { login, regist, registConfirm } from './redux/actions';
 
 
 const Login = ({ handleChange, handleSubmit }) => (
@@ -112,7 +113,27 @@ const mapDispatch = (dispatch, ownProps) => ({
     handleSubmit : e => {
         e.preventDefault();
 
-        console.log(e.target.name);
+        switch(e.target.name) {
+            case 'login' :
+                console.log('login');
+
+                dispatch(login());
+
+                break;
+            case 'regist' :
+                console.log('regist submit');
+
+                dispatch(regist());
+
+                break;
+            case 'regist_confirm' :
+                console.log('regist_confirm submit');
+
+                dispatch(registConfirm());
+
+                break;
+            default : break;
+        }
     }
 });
 
