@@ -30,6 +30,31 @@ const Login = ({ handleChange, handleSubmit }) => (
 
 
 
+const Regist = ({ handleChange, handleSubmit }) => (
+    <form name='regist' onSubmit={ handleSubmit }>
+
+        <h3>Regist</h3>
+
+        <label>
+            Email
+            <input type="text" name='email' onChange={ handleChange } />
+        </label>
+
+        <br />
+
+        <label>
+            Password
+            <input type="password" name='password' onChange={ handleChange } />
+        </label>
+
+        <br />
+
+        <input type="submit" value="Submit" />
+    </form>
+);
+
+
+
 class App extends Component {
     render() {
 
@@ -40,6 +65,7 @@ class App extends Component {
         return (
         <div className="App">
             <Login handleChange={ handleChange } handleSubmit={ handleSubmit } />
+            <Regist handleChange={ handleChange } handleSubmit={ handleSubmit } />
         </div>
         );
     }
