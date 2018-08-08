@@ -7,15 +7,22 @@ import { connect } from 'react-redux';
 
 const Login = ({ handleChange, handleSubmit }) => (
     <form  name='login' onSubmit={ handleSubmit }>
+
+        <h3>Login</h3>
+
         <label>
             Email
             <input type="text" name='email' onChange={ handleChange } />
         </label>
 
+        <br />
+
         <label>
             Password
             <input type="password" name='password' onChange={ handleChange } />
         </label>
+
+        <br />
 
         <input type="submit" value="Submit" />
     </form>
