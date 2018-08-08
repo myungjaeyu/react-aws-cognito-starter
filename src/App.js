@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
+import { connect } from 'react-redux';
 
-      </div>
-    );
-  }
+class App extends Component {
+    render() {
+
+        const { fetch } = this.props;
+        console.log(fetch);
+
+        return (
+        <div className="App">
+
+        </div>
+        );
+    }
 }
 
-export default App;
+const mapState = (state, ownProps) => ({
+    fetch : state.fetch
+});
+
+const mapDispatch = (dispatch, ownProps) => ({
+
+});
+
+export default connect(mapState, mapDispatch)(App);
