@@ -9,7 +9,7 @@ const fetchState = {
 };
 
 export default {
-    mockData : createReducer(fetchState, {
+    fetch : createReducer(fetchState, {
         [ActionTypes.FETCH](state) {
             return immutable(state, {
                 pending: { 
