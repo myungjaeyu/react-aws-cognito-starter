@@ -35,6 +35,8 @@ export default {
             });
         },
         [ActionTypes.AUTH_REGIST_SUCCESS](state, { data }) {
+            console.log('signed up callback:', data)
+
             return immutable(state, {
                 pending: { 
                     $set : false

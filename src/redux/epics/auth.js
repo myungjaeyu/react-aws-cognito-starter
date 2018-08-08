@@ -2,7 +2,8 @@ import { ActionTypes } from '../constants';
 import { loginSuccess, registSuccess, registConfirmSuccess } from '../actions';
 
 import { ofType } from 'redux-observable';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, mergeMap } from 'rxjs/operators';
+import { from } from 'rxjs';
 
 import * as AWSCognito from 'amazon-cognito-identity-js';
 
@@ -34,8 +35,26 @@ export const Regist = (action$, store$) =>
 
             console.log('regist epic:', regist_email, regist_password)
 
-        }),        
-        map(_ => registSuccess({ data : ''}))
+        }),
+        mergeMap(_ => {
+            
+            let { regist_email, regist_password } = store$.value.form;
+
+            return from(new Promise(resolve =>
+                userPool.signUp(
+                    regist_email,
+                    regist_password,
+                    [
+                        { Name: 'email', Value: regist_email }
+                    ],
+                    null,
+                    (err, data) => 
+                        resolve(err ? {} : { email : data.user.getUsername() })
+                )
+            ))
+
+        }),
+        map(e => registSuccess(e))
     );
 
 export const RegistConfirm = (action$, store$) => 
