@@ -3,24 +3,24 @@ import './App.css';
 
 import { connect } from 'react-redux';
 
-import { login, regist, registConfirm } from './redux/actions';
+import { login, regist, registConfirm, changeInputValue } from './redux/actions';
 
 
-const Login = ({ handleChange, handleSubmit }) => (
+const Login = ({ handleChange, handleSubmit, email = '', password = '' }) => (
     <form  name='login' onSubmit={ handleSubmit }>
 
         <h3>Login</h3>
 
         <label>
             Email
-            <input type="text" name='login_email' onChange={ handleChange } />
+            <input type="text" name='login_email' value={ email } onChange={ handleChange } />
         </label>
 
         <br />
 
         <label>
             Password
-            <input type="password" name='login_password' onChange={ handleChange } />
+            <input type="password" name='login_password' value={ password } onChange={ handleChange } />
         </label>
 
         <br />
@@ -31,7 +31,7 @@ const Login = ({ handleChange, handleSubmit }) => (
 
 
 
-const Regist = ({ handleChange, handleSubmit }) => (
+const Regist = ({ handleChange, handleSubmit, email, password }) => (
     <form name='regist' onSubmit={ handleSubmit }>
 
         <h3>Regist</h3>
@@ -56,7 +56,7 @@ const Regist = ({ handleChange, handleSubmit }) => (
 
 
 
-const RegistConfirm = ({ handleChange, handleSubmit }) => (
+const RegistConfirm = ({ handleChange, handleSubmit, email, code }) => (
     <form name='regist_confirm' onSubmit={ handleSubmit }>
 
         <h3>RegistConfirm</h3>
@@ -84,15 +84,26 @@ const RegistConfirm = ({ handleChange, handleSubmit }) => (
 class App extends Component {
     render() {
 
-        const { fetch, handleChange, handleSubmit } = this.props;
-
-        console.log(fetch);
+        const { 
+            handleChange, handleSubmit,
+            login_email, login_password,
+            regist_email, regist_password,
+            regist_confirm_email, regist_confirm_code
+        } = this.props;
 
         return (
         <div className="App">
-            <Login handleChange={ handleChange } handleSubmit={ handleSubmit } />
-            <Regist handleChange={ handleChange } handleSubmit={ handleSubmit } />
-            <RegistConfirm handleChange={ handleChange } handleSubmit={ handleSubmit } />
+
+            <Login 
+                handleChange={ handleChange } handleSubmit={ handleSubmit }
+                email={ login_email } password={ login_password }/>
+
+            <Regist handleChange={ handleChange } handleSubmit={ handleSubmit } 
+                email={ regist_email } password={ regist_password }/>
+
+            <RegistConfirm handleChange={ handleChange } handleSubmit={ handleSubmit }
+                email={ regist_confirm_email } password={ regist_confirm_code }/>
+
         </div>
         );
     }
@@ -101,7 +112,8 @@ class App extends Component {
 
 
 const mapState = (state, ownProps) => ({
-    fetch : state.fetch
+    fetch : state.fetch,
+    ...state.form
 });
 
 const mapDispatch = (dispatch, ownProps) => ({
@@ -109,6 +121,9 @@ const mapDispatch = (dispatch, ownProps) => ({
         let { name, value } = e.target;
 
         console.log(name, value);
+
+        dispatch(changeInputValue(name, value))
+
     },
     handleSubmit : e => {
         e.preventDefault();
