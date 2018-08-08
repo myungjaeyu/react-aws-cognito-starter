@@ -55,6 +55,32 @@ const Regist = ({ handleChange, handleSubmit }) => (
 
 
 
+const RegistConfirm = ({ handleChange, handleSubmit }) => (
+    <form name='regist_confirm' onSubmit={ handleSubmit }>
+
+        <h3>RegistConfirm</h3>
+
+        <label>
+            Confirm Email
+            <input type="text" name='email' onChange={ handleChange } />
+        </label>
+
+        <br />
+
+        <label>
+            Confirm Code
+            <input type="text" name='code' onChange={ handleChange } />
+        </label>
+
+        <br />
+
+        <input type="submit" value="Submit" />
+
+    </form>
+);
+
+
+
 class App extends Component {
     render() {
 
@@ -66,6 +92,7 @@ class App extends Component {
         <div className="App">
             <Login handleChange={ handleChange } handleSubmit={ handleSubmit } />
             <Regist handleChange={ handleChange } handleSubmit={ handleSubmit } />
+            <RegistConfirm handleChange={ handleChange } handleSubmit={ handleSubmit } />
         </div>
         );
     }
