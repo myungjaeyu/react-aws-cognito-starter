@@ -10,6 +10,20 @@ const authState = {
 
 export default {
     auth : createReducer(authState, {
+        [ActionTypes.AUTH_GET_SESSION](state) {
+            return immutable(state, {
+            })
+        },
+        [ActionTypes.AUTH_GET_SESSION_SUCCESS](state, { data }) {
+
+            console.log('get session', data)
+
+            return immutable(state, {
+                data : {
+                    $set : data
+                }
+            })
+        },
         [ActionTypes.AUTH_LOGIN](state) {
             return immutable(state, {
                 pending: {

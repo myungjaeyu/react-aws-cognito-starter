@@ -1,5 +1,18 @@
 import { ActionTypes } from '../constants';
 
+export const getSession = () => {
+    return {
+        type: ActionTypes.AUTH_GET_SESSION
+    }
+}
+
+export const getSessionSuccess = (data) => {
+    return {
+        type: ActionTypes.AUTH_GET_SESSION_SUCCESS,
+        data: data
+    }
+}
+
 export const login = () => {
 	return {
 		type: ActionTypes.AUTH_LOGIN
