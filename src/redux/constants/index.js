@@ -5,6 +5,8 @@ export const ActionTypes = {
     AUTH_GET_SESSION_SUCCESS : '[fetch] getSessionSuccess',
     AUTH_LOGIN : '[auth] login',
     AUTH_LOGIN_SUCCESS : '[auth] loginSuccess',
+    AUTH_LOGOUT : '[auth] logout',
+    AUTH_LOGOUT_SUCCESS : '[auth] logoutSuccess',
     AUTH_REGIST : '[auth] regist',
     AUTH_REGIST_SUCCESS : '[auth] registSuccess',
     AUTH_REGIST_CONFIRM : '[auth] registConfirm',

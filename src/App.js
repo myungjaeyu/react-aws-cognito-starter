@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
-import { getSession, login, regist, registConfirm, changeInputValue } from './redux/actions';
+import { getSession, login, logout, regist, registConfirm, changeInputValue } from './redux/actions';
 
 
 const Login = ({ handleChange, handleSubmit, email = '', password = '' }) => (
@@ -84,9 +84,13 @@ class App extends Component {
 
     componentDidMount() {
 
-        const { handleGetSession } = this.props;
+        const { 
+            handleGetSession, 
+            // handleLogout 
+        } = this.props;
 
         handleGetSession();
+        // handleLogout();
 
     }
 
@@ -160,6 +164,9 @@ const mapDispatch = (dispatch, ownProps) => ({
                 break;
             default : break;
         }
+    },
+    handleLogout : _ => {
+        dispatch(logout())
     }
 });
 

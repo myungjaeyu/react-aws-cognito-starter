@@ -26,6 +26,19 @@ export const loginSuccess = (data) => {
 	}
 };
 
+export const logout = () => {
+	return {
+		type: ActionTypes.AUTH_LOGOUT
+	}
+};
+
+export const logoutSuccess = (data) => {
+	return {
+		type : ActionTypes.AUTH_LOGOUT_SUCCESS,
+		data : data
+	}
+};
+
 export const regist = () => {
     return {
         type: ActionTypes.AUTH_REGIST

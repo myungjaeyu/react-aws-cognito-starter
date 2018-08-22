@@ -1,5 +1,5 @@
 import { ActionTypes } from '../constants';
-import { getSessionSuccess, loginSuccess, registSuccess, registConfirmSuccess } from '../actions';
+import { getSessionSuccess, loginSuccess, logoutSuccess, registSuccess, registConfirmSuccess } from '../actions';
 
 import { ofType } from 'redux-observable';
 import { map, tap, mergeMap } from 'rxjs/operators';
@@ -58,6 +58,14 @@ export const Login = (action$, store$) =>
 
         }),
         map(e => loginSuccess(e))
+    );
+
+export const Logout = action$ => 
+    action$.pipe(
+        ofType(ActionTypes.AUTH_LOGOUT),
+        map(_ => userPool.getCurrentUser()),
+        map(user => user.signOut()),
+        map(_ => logoutSuccess(true))
     );
 
 export const Regist = (action$, store$) => 

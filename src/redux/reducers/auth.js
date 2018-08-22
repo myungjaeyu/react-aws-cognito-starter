@@ -43,6 +43,25 @@ export default {
                 }
             });
         },
+        [ActionTypes.AUTH_LOGOUT](state) {
+            return immutable(state, {
+                pending: {
+                    $set : true
+                }
+            });
+        },
+        [ActionTypes.AUTH_LOGOUT_SUCCESS](state, { data }) {
+            console.log('signed out callback:', data)
+
+            return immutable(state, {
+                pending: { 
+                    $set : false
+                },
+                data : {
+                    $set : data
+                }
+            });
+        },        
         [ActionTypes.AUTH_REGIST](state) {
             return immutable(state, {
                 pending: { 
